@@ -25,12 +25,14 @@ public abstract class Producto {
         return valor;
     }
 
-    // costo = numero * valor
+    
+    public abstract String getTipo();
+
+
     public double calcularCosto() {
         return numero * valor;
     }
 
-    // Solo muestra el costo total
     public void mostrar() {
         System.out.println("Costo total: " + calcularCosto());
     }
