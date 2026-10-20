@@ -24,7 +24,7 @@ public class Main {
 
         double total = 0;
         for (Producto p : new Producto[]{pedido.getProducto()}) {
-            // Se revisa si el producto es una Impresion o una Camara
+            
             String tipo = "";
             if (p instanceof Impresion) {
                 tipo = "Impresion";
