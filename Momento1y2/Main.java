@@ -11,16 +11,15 @@ public class Main {
         Producto[] productos = { impresion, camara };
         Pedido pedido = new Pedido(cliente, productos[0], "19/10/2026");
 
-        // Se muestran las 3 formas de pago y se escoge una (1, 2 o 3)
+    
         System.out.println("Formas de pago:");
         pedido.mostrarFormasPago();
         pedido.elegirFormaPago(2);
 
-        System.out.println();
-        System.out.println("Cliente: " + pedido.getCliente().getNombre());
+        System.out.println("Cliente: " + pedido.getCliente());
         System.out.println("Fecha: " + pedido.getFecha());
         System.out.println("Forma de pago: " + pedido.getFormaPagoElegida());
-        System.out.println();
+        
 
         double total = 0;
         for (Producto p : new Producto[]{pedido.getProducto()}) {
