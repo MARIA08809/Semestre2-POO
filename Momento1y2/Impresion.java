@@ -10,18 +10,20 @@ package Momento1y2;
         this.foto = foto;
     }
 
-    public String getColor() { 
-        return color; }
-    public void setColor(String color) { 
-        this.color = color; }
-    public Foto getFoto() { 
-        return foto; }
-    public void setFoto(Foto foto) { 
-        this.foto = foto; }
-        
+    public String getColor() { return color; }
+    public void setColor(String color) { this.color = color; }
+    public Foto getFoto() { return foto; }
+    public void setFoto(Foto foto) { this.foto = foto; }
     @Override
     public String getTipo() {
         return "Impresion";
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+             + ", Color: "  + color 
+             + ", Foto: " + foto.getFichero();
     }
 
     public void print() {

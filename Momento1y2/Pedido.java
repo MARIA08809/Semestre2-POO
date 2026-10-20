@@ -27,7 +27,7 @@ public class Pedido {
     // Muestra las 3 opciones numeradas
     public void mostrarFormasPago() {
         for (int i = 0; i < formasPago.length; i++) {
-            System.out.println((i + 1) + ". " + formasPago[i]);
+            System.out.println((i + 1) + formasPago[i]);
         }
     }
  
@@ -35,8 +35,9 @@ public class Pedido {
     public boolean elegirFormaPago(int opcion) {
         if (opcion < 1 || opcion > formasPago.length) {
             return false;
-        }
-        formaPagoElegida = formasPago[opcion - 1];
-        return true;
+        } 
+            formaPagoElegida = formasPago[opcion - 1];
+            return true;
+        
     }
 }

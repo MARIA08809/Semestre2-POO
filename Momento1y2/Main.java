@@ -2,46 +2,30 @@ package Momento1y2;
 
 public class Main {
     public static void main(String[] args) {
-        Cliente cliente = new Cliente("1005123456", "Juan Perez");
+        Cliente cliente1 = new Cliente("Juan Perez", "1005123456");
 
-        Foto foto =  new Foto("vacaciones.jpg");
-        Impresion impresion = new Impresion(5, 1000, "Color", foto);
-        Camara camara = new Camara(2, 1200000, "Canon", "EOS 250D");
+        Foto foto1 =  new Foto("vacaciones.jpg");
+        Impresion impresion1 = new Impresion(5, 1000, "Color", foto1);
+        Camara camara1 = new Camara(2, 1200000, "Canon", "EOS 250D");
 
-        Producto[] productos = { impresion, camara };
-        Pedido pedido = new Pedido(cliente, productos[0], "19/10/2026");
+        Producto[] productos = { impresion1, camara1 };
+        Pedido pedido1 = new Pedido(cliente1, productos[0], "19/10/2026");
 
     
         System.out.println("Formas de pago:");
-        pedido.mostrarFormasPago();
-        pedido.elegirFormaPago(2);
+        pedido1.mostrarFormasPago();
+        pedido1.elegirFormaPago(2);
 
-        System.out.println("Cliente: " + pedido.getCliente());
-        System.out.println("Fecha: " + pedido.getFecha());
-        System.out.println("Forma de pago: " + pedido.getFormaPagoElegida());
+        System.out.println("Cliente: " + pedido1.getCliente());
+        System.out.println("Fecha: " + pedido1.getFecha());
+        System.out.println("Forma de pago: " + pedido1.getFormaPagoElegida());
         
 
-        double total = 0;
-        for (Producto p : new Producto[]{pedido.getProducto()}) {
-            
-            String tipo = "";
-            if (p instanceof Impresion) {
-                tipo = "Impresion";
-            } else if (p instanceof Camara) {
-                tipo = "Camara";
-            }
+        System.out.println(pedido1.getProducto());
 
-            System.out.println("Producto: " + tipo);
-            System.out.println("Cantidad (numero): " + p.getNumero());
-            System.out.println("Valor: " + p.getValor());
-            System.out.println("Valor a pagar: " + p.getNumero() + " x " + p.getValor()
-                    + " = " + p.calcularCosto());
-            System.out.println();
-
-            total = total + p.calcularCosto();
-        }
+        double total = pedido1.getProducto().calcularCosto();
 
         System.out.println("TOTAL A PAGAR: " + total);
-        System.out.println("Pago con: " + pedido.getFormaPagoElegida());
+        System.out.println("Pago con: " + pedido1.getFormaPagoElegida());
     }
 }

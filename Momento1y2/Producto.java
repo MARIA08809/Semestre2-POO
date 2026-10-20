@@ -25,7 +25,7 @@ public abstract class Producto {
         return valor;
     }
 
-    
+    // Cada producto dice cuál es su tipo
     public abstract String getTipo();
 
 
@@ -33,11 +33,16 @@ public abstract class Producto {
         return numero * valor;
     }
 
+
     public void mostrar() {
         System.out.println("Costo total: " + calcularCosto());
     }
 
+    @Override
     public String toString() {
-        return "Producto #" + numero;
+        return "Producto: " + getTipo()
+             + ", Cantidad: " + numero 
+             + ", Valor: " + valor 
+             + ", Valor a pagar: " + calcularCosto();
     }
 }
