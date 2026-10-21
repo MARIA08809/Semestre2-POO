@@ -4,8 +4,8 @@ public class Main {
     public static void main(String[] args) {
         Cliente cliente1 = new Cliente("Juan Perez", "1005123456");
 
-        Foto foto1 =  new Foto("vacaciones.jpg");
-        Impresion impresion1 = new Impresion(5, 1000, "Color", foto1);
+        Foto[] foto1 =  new Foto[] { new Foto("vacaciones.jpg") };
+        Impresion impresion1 = new Impresion(5, 1000, "Color", foto1[0]);
         Camara camara1 = new Camara(2, 1200000, "Canon", "EOS 250D");
 
         Producto[] productos = { impresion1, camara1 };
