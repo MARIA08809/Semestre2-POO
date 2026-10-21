@@ -2,7 +2,7 @@ package Momento1y2;
 
 public abstract class Producto {
     private int numero;
-    private final double valor;   // constante: no cambia
+    private  double valor;   // constante: no cambia
 
     public Producto(int numero, double valor) {
         this.numero = numero;
