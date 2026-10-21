@@ -1,4 +1,3 @@
-package Momento1y2;
 
 public class Cliente {
     private String nombre;

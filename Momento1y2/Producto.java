@@ -1,4 +1,4 @@
-package Momento1y2;
+
 
 public abstract class Producto {
     private int numero;

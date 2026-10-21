@@ -1,18 +1,17 @@
-package Momento1y2;
 
 public class Pedido {
     private Cliente cliente;
     private Producto producto;
     private String fecha;
+    private Pago pago;
  
 
-    private String[] formasPago = { "Tarjeta de crédito", "Tarjeta débito", "Efectivo" };
-    private String formaPagoElegida;
- 
-    public Pedido(Cliente cliente, Producto producto, String fecha) {
+
+    public Pedido(Cliente cliente, Producto producto, String fecha, Pago pago) {
         this.cliente = cliente;
         this.producto = producto;
         this.fecha = fecha;
+        this.pago = pago;
     }
  
     public Cliente getCliente() { return cliente; }
@@ -21,22 +20,9 @@ public class Pedido {
     public void setProducto(Producto producto) { this.producto = producto; }
     public String getFecha() { return fecha; }
     public void setFecha(String fecha) { this.fecha = fecha; }
-    public String[] getFormasPago() { return formasPago; }
-    public String getFormaPagoElegida() { return formaPagoElegida; }
- 
-    public void mostrarFormasPago() {
-        for (int i = 0; i < formasPago.length; i++) {
-            System.out.println((i + 1) + formasPago[i]);
-        }
-    }
+    public Pago getPago() { return pago; }
+    public void setPago(Pago pago) { this.pago = pago; }
+    
  
   
-    public boolean elegirFormaPago(int opcion) {
-        if (opcion < 1 || opcion > formasPago.length) {
-            return false;
-        } 
-            formaPagoElegida = formasPago[opcion - 1];
-            return true;
-        
-    }
 }
