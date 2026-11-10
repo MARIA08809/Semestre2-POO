@@ -1,3 +1,4 @@
+package Momento1y2;
 public class TarjetaDeCredito extends Pago {
     
     private String numeroTarjeta;
