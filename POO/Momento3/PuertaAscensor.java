@@ -16,7 +16,6 @@ public class PuertaAscensor extends Puerta {
     private int direccion;         
     private boolean[] solicitudes; 
 
-    // ---- Constructor ----
     public PuertaAscensor(int pisoActual, int totalPisos) {
         super(false, CERRADA);
         this.pisoActual = pisoActual;
