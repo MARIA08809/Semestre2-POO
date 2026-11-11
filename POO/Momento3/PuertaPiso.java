@@ -11,7 +11,7 @@ package Momento3;
 
     
     public PuertaPiso(int numero, boolean obstaculo, int estadoPuerta) {
-        super(obstaculo, estadoPuerta);   // llena la parte de Puerta
+        super(obstaculo, estadoPuerta);  
         this.numero = numero;
         this.solicitudes = new boolean[2];
     }

@@ -101,6 +101,7 @@ public class PuertaAscensor extends Puerta {
             cambiarDireccion();
         } else if (direccion == BAJANDO && !hayAbajo()) {
             cambiarDireccion();
+
         }
 
         // Se mueve un piso
