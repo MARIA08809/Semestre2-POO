@@ -4,7 +4,6 @@ public class SistemaControl {
     
     private PuertaAscensor ascensor;            
     private PuertaPiso[] pisos;                 
-
     private BotonAscensor[] botonesAscensor;    
     private BotonPiso[] botonesSubir;
     private BotonPiso[] botonesBajar;
