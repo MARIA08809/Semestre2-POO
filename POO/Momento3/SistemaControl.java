@@ -1,14 +1,17 @@
 package Momento3;
 
 public class SistemaControl {
-    
-    private PuertaAscensor ascensor;            
-    private PuertaPiso[] pisos;                 
-    private BotonAscensor[] botonesAscensor;    
+    // ---- Atributos ----
+    private PuertaAscensor ascensor;            // Agregación
+    private PuertaPiso[] pisos;                 // Agregación
+
+    private BotonAscensor[] botonesAscensor;    // Composición: el sistema crea sus botones
     private BotonPiso[] botonesSubir;
     private BotonPiso[] botonesBajar;
     private BotonMantenerPuerta botonMantener;
+    private Alarma alarma;                  // Composición
 
+    // ---- Constructor ----
     public SistemaControl(PuertaAscensor ascensor, PuertaPiso[] pisos) {
         this.ascensor = ascensor;
         this.pisos = pisos;
@@ -20,23 +23,31 @@ public class SistemaControl {
 
         for (int i = 0; i < n; i++) {
             botonesAscensor[i] = new BotonAscensor(i + 1);
-            if (i != n - 1) {   // el último piso no tiene botón de subir
-                botonesSubir[i] = new BotonPiso(i + 1, PuertaPiso.SUBIENDO);
-            }
-            if (i != 0) {       // el primer piso no tiene botón de bajar
-                botonesBajar[i] = new BotonPiso(i + 1, PuertaPiso.BAJANDO);
-            }
+            botonesSubir[i] = new BotonPiso(i + 1, PuertaPiso.SUBIENDO);
+            botonesBajar[i] = new BotonPiso(i + 1, PuertaPiso.BAJANDO);
         }
+        botonesBajar[0] = null;       // el primer piso no baja
+        botonesSubir[n - 1] = null;   // el último piso no sube
         botonMantener = new BotonMantenerPuerta(5);
+        alarma = new Alarma();
     }
 
+    // ---- Métodos simples ----
     private void apagarBotones(int piso) {
-        botonesAscensor[piso - 1].apagar();
-        if (botonesSubir[piso - 1] != null) {
-            botonesSubir[piso - 1].apagar();
+        apagarSiExiste(botonesAscensor[piso - 1]);
+        apagarSiExiste(botonesSubir[piso - 1]);
+        apagarSiExiste(botonesBajar[piso - 1]);
+    }
+
+    private void apagarSiExiste(BotonPiso boton) {
+        if (boton != null) {
+            boton.apagar();
         }
-        if (botonesBajar[piso - 1] != null) {
-            botonesBajar[piso - 1].apagar();
+    }
+
+    private void apagarSiExiste(BotonAscensor boton) {
+        if (boton != null) {
+            boton.apagar();
         }
     }
 
@@ -74,18 +85,27 @@ public class SistemaControl {
         despachar(piso, direccion);
     }
 
+    public void activarAlarma() {
+        alarma.activar();
+    }
+
+    public void desactivarAlarma() {
+        alarma.desactivar();
+    }
+
+    // ---- Método con ciclo y condiciones ----
     public void atenderSolicitud() {
-        while (ascensor.hayPendientes()) {
-            int antes = ascensor.getPisoActual();
-            ascensor.mover();
-            int ahora = ascensor.getPisoActual();
-            if (ahora == antes) {
-                break;   // no pudo avanzar (obstáculo en la puerta)
-            }
-            pisos[antes - 1].cerrar();
-            if (ascensor.getEstadoAscensor() == PuertaAscensor.DETENIDO) {
-                pisos[ahora - 1].abrir();
-                apagarBotones(ahora);
+        for (int i = 0; i < pisos.length * 2; i++) {
+            if (ascensor.hayPendientes() && !alarma.isActivada()) {
+                int antes = ascensor.getPisoActual();
+                ascensor.mover();
+                pisos[antes - 1].cerrar();
+
+                if (ascensor.getEstadoAscensor() == PuertaAscensor.DETENIDO) {
+                    int ahora = ascensor.getPisoActual();
+                    pisos[ahora - 1].abrir();
+                    apagarBotones(ahora);
+                }
             }
         }
     }
