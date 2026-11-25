@@ -1,22 +1,33 @@
 package Momento3;
 
-public abstract class Botones {
-    
+public class Botones {
+
     private boolean iluminado;
-    private boolean presionado;   
+    private boolean presionado;
 
     public Botones() {
         this.iluminado = false;
         this.presionado = false;
     }
 
-    public void iluminar() {
-        iluminado = true;
+    public void presionar(int piso, int direccion) {
+        encender();
+    }
+
+    public void encender() {
+        cambiar(true);
     }
 
     public void apagar() {
-        iluminado = false;
-        presionado = false;
+        cambiar(false);
+    }
+
+    private void cambiar(boolean encendido) {
+        iluminado = encendido;
+        presionado = encendido;
+        if (encendido) {
+            sonido();
+        }
     }
 
     public void sonido() {
@@ -29,14 +40,6 @@ public abstract class Botones {
 
     public boolean isPresionado() {
         return presionado;
-    }
-
-    public void setPresionado(boolean presionado) {
-        this.presionado = presionado;
-        if (presionado) {
-            iluminar();
-            sonido();
-        }
     }
 }
     

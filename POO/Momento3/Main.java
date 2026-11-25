@@ -7,10 +7,10 @@ public class Main {
         // Se crean los pisos
         PuertaPiso[] pisos = new PuertaPiso[TOTAL_PISOS];
         for (int i = 0; i < pisos.length; i++) {
-            pisos[i] = new PuertaPiso(i + 1, false, Puerta.CERRADA);
+            pisos[i] = new PuertaPiso(i + 1);
         }
 
-        // Se crea el ascensor (empieza en el piso 1) y el sistema de control
+        // Se crea el ascensor y el sistema de control(empieza en el piso 1) 
         PuertaAscensor ascensor = new PuertaAscensor(1, TOTAL_PISOS);
         SistemaControl sistema = new SistemaControl(ascensor, pisos);
 

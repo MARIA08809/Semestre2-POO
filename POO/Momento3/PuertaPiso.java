@@ -10,6 +10,11 @@ package Momento3;
     private boolean[] solicitudes;   
 
     
+    
+    public PuertaPiso(int numero) {
+        this(numero, false, CERRADA);
+    }
+
     public PuertaPiso(int numero, boolean obstaculo, int estadoPuerta) {
         super(obstaculo, estadoPuerta);  
         this.numero = numero;
